@@ -24,11 +24,5 @@ jobs:
     - name: Run Docker container
       run: docker run -d -p 8000:8000 --name my-django-container my-django-app
 
-    - name: Wait for Django to start
-      run: |
-        while ! curl -s http://localhost:8000/api/posts/; do
-          sleep 1
-        done
-
     - name: Check logs for test results
       run: docker logs my-django-container | grep "Ran"
